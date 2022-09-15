@@ -1,4 +1,5 @@
 import { FlatList, Text } from "react-native";
+import uuid from "react-native-uuid";
 import React from "react";
 import { Box } from "native-base";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +12,7 @@ function Moves() {
   if (isLoading) return <Loading />; // useState
   if (isError) return <Text>Error</Text>; // useMemo
 
-  const renderItem = ({ item, idx }) => <Movesbox key={idx} move={item} />;
+  const renderItem = ({ item }) => <Movesbox key={uuid.v4()} move={item} />;
 
   return (
     <Box

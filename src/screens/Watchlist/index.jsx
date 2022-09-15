@@ -1,19 +1,24 @@
 /* eslint-disable global-require */
 import { Box, ScrollView } from "native-base";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import React from "react";
 import ImageBackground from "../../components/Imagebackground";
 
 function WatchList() {
+  const tabBarHeight = useBottomTabBarHeight();
   return (
-    <ScrollView showsVerticalScrollIndicator={false}>
-      <Box
-        padding={5}
-        _dark={{
-          bg: "coolGray.800",
-        }}
-        _light={{
-          bg: "warmGray.50",
-        }}
+    <Box
+      padding={5}
+      _dark={{
+        bg: "coolGray.800",
+      }}
+      _light={{
+        bg: "warmGray.50",
+      }}
+    >
+      <ScrollView
+        showsVerticalScrollIndicator={false}
+        marginBottom={tabBarHeight}
       >
         <ImageBackground
           href="https://anizm.net/pokemon-izle"
@@ -63,8 +68,8 @@ function WatchList() {
           heading=" Advanced Battle"
           subText="54 Episodes "
         />
-      </Box>
-    </ScrollView>
+      </ScrollView>
+    </Box>
   );
 }
 export default WatchList;

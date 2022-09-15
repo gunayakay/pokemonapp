@@ -61,13 +61,13 @@ function ImageBackground({ href, imageURL, subText, heading }) {
 
 ImageBackground.propTypes = {
   href: PropTypes.string,
-  imageURL: PropTypes.string,
+  imageURL: PropTypes.number,
   subText: PropTypes.string,
   heading: PropTypes.string,
 };
 ImageBackground.defaultProps = {
   href: "",
-  imageURL: "",
+  imageURL: 0,
   subText: "",
   heading: "",
 };

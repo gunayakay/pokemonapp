@@ -1,8 +1,9 @@
 /* eslint-disable global-require */
 /* eslint-disable jsx-a11y/anchor-is-valid */
 /* eslint-disable react/prop-types */
+import React, { useState } from "react";
 import { TouchableOpacity } from "react-native";
-import React from "react";
+import auth from "@react-native-firebase/auth";
 import {
   Button,
   HStack,
@@ -18,6 +19,18 @@ import {
 } from "native-base";
 
 function Login({ navigation }) {
+  const [error, setError] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  async function login(e, p) {
+    try {
+      await auth().signInWithEmailAndPassword(e, p);
+      navigation.navigate("Main");
+    } catch (error) {
+      setError(error.message);
+    }
+  }
   return (
     <Box
       flex={1}
@@ -66,11 +79,14 @@ function Login({ navigation }) {
         <VStack space={3} mt="5">
           <FormControl>
             <FormControl.Label>Email ID</FormControl.Label>
-            <Input />
+            <Input onChangeText={(value) => setEmail(value)} />
           </FormControl>
           <FormControl>
             <FormControl.Label>Password</FormControl.Label>
-            <Input type="password" />
+            <Input
+              type="password"
+              onChangeText={(value) => setPassword(value)}
+            />
             <Pressable>
               <Link
                 onPress={() => {
@@ -88,12 +104,11 @@ function Login({ navigation }) {
               </Link>
             </Pressable>
           </FormControl>
+          <Text>{error}</Text>
           <Button
             mt="2"
             colorScheme="indigo"
-            onPress={() => {
-              navigation.navigate("Main", { screen: "Home" });
-            }}
+            onPress={() => login(email, password)}
           >
             Sign in
           </Button>

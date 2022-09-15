@@ -1,4 +1,5 @@
 import React from "react";
+import uuid from "react-native-uuid";
 import { Center, Text, Box, Progress } from "native-base";
 import Loading from "../../../../components/loading";
 import usePokemon from "../../../../hooks/usePokemon";
@@ -30,7 +31,7 @@ function BaseStats({ url }) {
     >
       <Box bg="red" flex={1} w="full" padding={5}>
         {data.stats.map((item, idx) => (
-          <Box marginBottom="6">
+          <Box marginBottom="6" key={uuid.v4()} key={uuid.v4()}>
             <Text fontSize="md" marginBottom={2}>
               {capitalizeFirstLetter(item.stat.name)}: %{item.base_stat}
             </Text>

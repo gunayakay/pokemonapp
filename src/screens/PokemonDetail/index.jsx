@@ -3,6 +3,7 @@
 /* eslint-disable react/prop-types */
 /* eslint-disable react/function-component-definition */
 import React, { useState, useEffect } from "react";
+import uuid from "react-native-uuid";
 import {
   useColorModeValue,
   Heading,
@@ -148,6 +149,7 @@ function PokemonDetail({ route: namedRoute }) {
               : useColorModeValue("coolGray.200", "gray.400");
           return (
             <Box
+              key={uuid.v4()}
               borderBottomWidth="3"
               borderColor={borderColor}
               flex={1}
@@ -163,6 +165,7 @@ function PokemonDetail({ route: namedRoute }) {
                 <Animated.Text
                   style={{
                     color,
+                    fontSize: 13,
                   }}
                 >
                   {route.title}

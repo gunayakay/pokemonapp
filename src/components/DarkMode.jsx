@@ -5,29 +5,21 @@ function DarkMode() {
   const { colorMode, toggleColorMode } = useColorMode();
 
   return (
-    <Center flex={1} w="full">
-      <Box
-        p={3}
-        w="full"
-        flex={1}
-        _dark={{
-          bg: "coolGray.800",
-        }}
-        _light={{
-          bg: "warmGray.50",
-        }}
+    <Box w="full" justifyContent="space-between" paddingX={3}>
+      <HStack
+        space="3"
+        alignItems="space-between"
+        justifyContent="space-between"
       >
-        <HStack space="3" alignItems="stretch" justifyContent="space-between">
-          <Text fontSize="lg">
-            The active color mode is{" "}
-            <Text bold fontSize="lg">
-              {colorMode}
-            </Text>
+        <Text fontSize="lg">
+          The active color mode is{" "}
+          <Text bold fontSize="lg">
+            {colorMode}
           </Text>
-          <Switch onChange={toggleColorMode} />
-        </HStack>
-      </Box>
-    </Center>
+        </Text>
+        <Switch onChange={toggleColorMode} isChecked={colorMode === "dark"} />
+      </HStack>
+    </Box>
   );
 }
 export default DarkMode;

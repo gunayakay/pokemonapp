@@ -79,6 +79,7 @@ import com.android.build.OutputFile
 
 project.ext.react = [
     enableHermes: true,  // clean and rebuild if changing
+    hermesCommand: '../../node_modules/react-native/sdks/hermesc/%OS-BIN%/hermesc'
 ]
 
 apply from: "../../node_modules/react-native/react.gradle"
@@ -224,6 +225,12 @@ android {
             keyAlias 'androiddebugkey'
             keyPassword 'android'
         }
+        release {
+            storeFile file('pokeapp.keystore')
+            storePassword 'pokeapp'
+            keyAlias 'pokeapp'
+            keyPassword 'pokeapp'
+        }
     }
     buildTypes {
         debug {
@@ -232,7 +239,7 @@ android {
         release {
             // Caution! In production, you need to generate your own keystore file.
             // see https://reactnative.dev/docs/signed-apk-android.
-            signingConfig signingConfigs.debug
+            signingConfig signingConfigs.release
             minifyEnabled enableProguardInReleaseBuilds
             proguardFiles getDefaultProguardFile("proguard-android.txt"), "proguard-rules.pro"
         }
@@ -284,6 +291,9 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+    implementation platform('com.google.firebase:firebase-bom:30.4.1')
+    implementation 'com.google.firebase:firebase-auth'
+
 }
 
 if (isNewArchitectureEnabled()) {

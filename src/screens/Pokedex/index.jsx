@@ -1,5 +1,6 @@
-import { FlatList, Text } from "react-native";
 import React from "react";
+import { FlatList, Text } from "react-native";
+import uuid from "react-native-uuid";
 import { useQuery } from "@tanstack/react-query";
 import { Box } from "native-base";
 import Pokebox from "./components/Pokebox";
@@ -11,7 +12,7 @@ function Pokedex() {
   if (isLoading) return <Loading />; // useState
   if (isError) return <Text>Error</Text>; // useMemo
 
-  const renderItem = ({ item, idx }) => <Pokebox key={idx} pokemon={item} />;
+  const renderItem = ({ item }) => <Pokebox key={uuid.v4()} pokemon={item} />;
 
   return (
     <Box

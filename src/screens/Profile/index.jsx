@@ -1,6 +1,8 @@
 /* eslint-disable global-require */
 import React from "react";
+import uuid from "react-native-uuid";
 import { Box, ScrollView, Text } from "native-base";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import { useQuery } from "@tanstack/react-query";
 import Card from "../../components/Card";
 import { getPokemons } from "../../storage/likeStorage";
@@ -8,6 +10,7 @@ import Loading from "../../components/loading";
 import useRefreshOnFocus from "../../hooks/useRefreshOnFocus";
 
 function Profile() {
+  const tabBarHeight = useBottomTabBarHeight();
   const { data, isLoading, isError, refetch } = useQuery(
     ["likedPokemons"],
     getPokemons
@@ -37,9 +40,13 @@ function Profile() {
       )}
 
       {!isLoading && !isError && (
-        <ScrollView showsVerticalScrollIndicator={false} flex="1">
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          flex="1"
+          marginBottom={tabBarHeight}
+        >
           {data.map((item) => (
-            <Card id={item} />
+            <Card id={item} key={uuid.v4()} />
           ))}
         </ScrollView>
       )}

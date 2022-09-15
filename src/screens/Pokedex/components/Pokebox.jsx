@@ -5,6 +5,7 @@
 /* eslint-disable react/prop-types */
 import { Image, TouchableOpacity, View } from "react-native";
 import React from "react";
+import uuid from "react-native-uuid";
 import { useQuery } from "@tanstack/react-query";
 import {
   Box,
@@ -65,6 +66,7 @@ function Pokebox({ pokemon }) {
               <VStack>
                 {data.types.map((item) => (
                   <Badge
+                    key={uuid.v4()}
                     color="white"
                     backgroundColor="white"
                     opacity={70}

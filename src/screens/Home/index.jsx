@@ -4,6 +4,7 @@
 /* eslint-disable global-require */
 import React from "react";
 import { Box, HStack, ScrollView, Text, VStack } from "native-base";
+import { useBottomTabBarHeight } from "@react-navigation/bottom-tabs";
 import CBox from "./components/cBox";
 import SearchBar from "../../components/SearchBar";
 import RandomPokemon from "../../components/RandomPokemon";
@@ -13,6 +14,7 @@ import useDailyPokemon from "../../hooks/useDailyPokemon";
 
 const randomId = generateRandomPokemon(1, 1156);
 function Home({ navigation }) {
+  const tabBarHeight = useBottomTabBarHeight();
   const { data, isLoading, isError } = useDailyPokemon(
     `https://pokeapi.co/api/v2/pokemon/${randomId}`
   );
@@ -28,7 +30,7 @@ function Home({ navigation }) {
         bg: "warmGray.50",
       }}
     >
-      <ScrollView>
+      <ScrollView marginBottom={tabBarHeight}>
         <SearchBar placeholder="Search Pokemon, Move, Ability etc." />
         <VStack>
           <HStack space={3} justifyContent="center">

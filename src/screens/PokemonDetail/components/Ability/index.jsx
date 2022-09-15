@@ -1,4 +1,5 @@
 import React from "react";
+import uuid from "react-native-uuid";
 import { Text, Box, ScrollView } from "native-base";
 import PropTypes from "prop-types";
 import extractPokemonId from "../../../../utils/extractPokemonId";
@@ -27,7 +28,11 @@ function Ability({ url }) {
     >
       <Box paddingBottom="5" flex={1}>
         {data.abilities.map((item) => (
-          <Description name={item.ability.name} url={item.ability.url} />
+          <Description
+            key={uuid.v4()}
+            name={item.ability.name}
+            url={item.ability.url}
+          />
         ))}
       </Box>
     </ScrollView>

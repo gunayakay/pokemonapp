@@ -1,4 +1,5 @@
 import React from "react";
+import uuid from "react-native-uuid";
 import { Text, Box, ScrollView } from "native-base";
 import Loading from "../../../../components/loading";
 import usePokemon from "../../../../hooks/usePokemon";
@@ -26,7 +27,11 @@ function Moves({ url }) {
     >
       <Box flex={1} paddingBottom="5">
         {data.moves.slice(0, 10).map((item) => (
-          <Description name={item.move.name} url={item.move.url} />
+          <Description
+            name={item.move.name}
+            key={uuid.v4()}
+            url={item.move.url}
+          />
         ))}
       </Box>
     </ScrollView>

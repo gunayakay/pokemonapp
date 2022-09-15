@@ -1,5 +1,6 @@
 /* eslint-disable react/jsx-no-duplicate-props */
 import React from "react";
+import uuid from "react-native-uuid";
 import {
   Box,
   HStack,
@@ -64,6 +65,7 @@ function Card({ id }) {
                 <VStack>
                   {pokemon.data.types.map((item) => (
                     <Badge
+                      key={uuid.v4()}
                       color="white"
                       backgroundColor="white"
                       opacity={70}

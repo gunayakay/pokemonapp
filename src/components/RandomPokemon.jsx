@@ -1,23 +1,10 @@
 import React, { useState, useRef } from "react";
-import { Box, Image, Pressable, Text } from "native-base";
-import { Animated } from "react-native";
+import { Box, Image, Pressable } from "native-base";
 import { useNavigation } from "@react-navigation/native";
 
 function RandomPokemon({ image, id }) {
   const navigation = useNavigation();
-  const dissapear = useRef(new Animated.Value(0)).current;
-  const dissapearIn = () => {
-    Animated.timing(dissapear, {
-      toValue: 1,
-      duration: 2000,
-    });
-  };
-  const dissapearOut = () => {
-    Animated.timing(dissapear, {
-      toValue: 1,
-      duration: 2000,
-    });
-  };
+
   const [pressed, setPressed] = useState(false);
   function handlePressed() {
     if (!pressed) setPressed((prev) => !prev);
